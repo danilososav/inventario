@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductoController extends Controller
 
 {
     public function index()
     {
-        /* $productos = Producto::all(); */
-        return view('productos.index');
+        $producto = DB::select('select * from productos');
+        return view('productos.index')->with('producto', $producto);
     }
 
-    public function show($id)
+    /* public function show($id)
 {
-    // Ejemplo usando Eloquent
+
+} */
 
 
-}
-
-    /*
     public function create()
     {
         return view('productos.create');
@@ -27,10 +26,11 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {
-        Producto::create($request->all());
+        /* Producto::create($request->all()); */
+
         return redirect()->route('productos.index');
     }
-
+/*
     public function edit(Producto $producto)
     {
         return view('productos.edit', compact('producto'));
@@ -42,11 +42,11 @@ class ProductoController extends Controller
         return redirect()->route('productos.index');
     }
 
-    public function destroy(Producto $producto)
+    public function destroy(id $producto)
     {
         $producto->delete();
         return redirect()->route('productos.index');
-    }
+    } */
 
-    */
+
 }

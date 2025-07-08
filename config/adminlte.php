@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => 'Texo',
-    'logo_img' => 'img/logo.png',
+    'logo_img' => 'img/logo2.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -322,7 +322,25 @@ return [
         ],*/
         [
             'text' => 'Productos',
-            'url' => 'productos/index',
+            'route' => 'productos.index',
+            'icon' => 'far fa-fw fa-shapes',
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Marcas',
+            'route' => 'marcas.index',
+            'icon' => 'far fa-fw fa-shapes',
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Stock',
+            'route' => 'stock.index',
+            'icon' => 'far fa-fw fa-shapes',
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Movimientos',
+            'route' => 'movimientos.index',
             'icon' => 'far fa-fw fa-shapes',
             'label_color' => 'success',
         ],
@@ -479,8 +497,8 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.all.js',
                 ],
             ],
         ],

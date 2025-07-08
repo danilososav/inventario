@@ -1,38 +1,35 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('content')
-<h1>Listado de Productos</h1>
-<a href="{{ route('productos.create') }}">Crear Producto</a>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Productos</h1>
+                </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-primary float-right" href="{{ route('productos.create') }}">
+                            <i class="fa fa-plus"></i> Añadir
+                        </a>
+                    </div>
 
-@if(session('success'))
-    <div>{{ session('success') }}</div>
-@endif
+            </div>
+        </div>
+    </section>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Stock</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($productos as $producto)
-            <tr>
-                <td>{{ $producto->nombre }}</td>
-                <td>{{ $producto->precio }}</td>
-                <td>{{ $producto->stock }}</td>
-                <td>
-                    <a href="{{ route('productos.edit', $producto->id) }}">Editar</a>
-                    <form action="{{ route('productos.destroy', $producto->id) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button onclick="return confirm('¿Eliminar producto?')">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+    <div class="content px-3">
+
+       {{--  @include('sweetalert::alert') --}}
+
+        <div class="clearfix">
+            <div class="col-sm-8">
+               {{--  @includeIf('layouts.buscador', ['url' => url()->current()]) --}}
+            </div>
+
+        </div>
+
+        <div class="card tabla-container">
+            @include('productos.table')
+        </div>
+    </div>
 @endsection

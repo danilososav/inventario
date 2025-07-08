@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,5 +34,18 @@ require __DIR__.'/auth.php';
 
 
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\MovimientoController;
+use App\Models\Marca;
 
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 Route::resource('productos', ProductoController::class);
+
+Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+
+Route::get('/movimiento', [MovimientoController::class, 'index'])->name('movimientos.index');
+
+Route::resource('marcas', MarcaController::class);
+Route::get('/marcas', [MarcaController::class, 'index'])->name('marcas.index');
+
+
