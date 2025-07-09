@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LineaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -47,5 +48,11 @@ Route::get('/movimiento', [MovimientoController::class, 'index'])->name('movimie
 
 Route::resource('marcas', MarcaController::class);
 Route::get('/marcas', [MarcaController::class, 'index'])->name('marcas.index');
+
+
+Route::resource('lineas', LineaController::class);
+Route::get('/lineas', [LineaController::class, 'index'])->name('lineas.index');
+Route::delete('/lineas/{id}', [LineaController::class, 'destroy'])->name('lineas.destroy');
+
 
 

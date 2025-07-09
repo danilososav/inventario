@@ -21,8 +21,7 @@ class MarcaController extends Controller
         ->orderBy('id_marca', 'desc');
 
         if (!empty($buscar)) {
-            $marca = $marca->where('mar_desc', 'iLIKE', "%{$buscar}%");
-
+            $marca = $marca->where('mar_desc', 'iLIKE', "%{$buscar}%")->orWhere('id_marca',$buscar);
         }
 
           $marca = $marca->paginate(10);
@@ -30,7 +29,7 @@ class MarcaController extends Controller
         if ($request->ajax()) {
             return view('marcas.table')->with('marca', $marca);
         }
-        
+
 
         return view('marcas.index')->with('marca', $marca);
     }
@@ -57,8 +56,6 @@ class MarcaController extends Controller
             'mar_desc' => strtoupper($input['mar_desc'])]);
 
         return redirect()->route('marcas.index')->with('success', 'Marca guardada correctamente.');
-
-
 
     }
 
@@ -116,7 +113,6 @@ class MarcaController extends Controller
 
         return redirect()->route('marcas.index')->with('success', 'Se elimino correctamente la marca');
 
-        return redirect(route('marcas.index'));
     }
 }
 
