@@ -60,3 +60,4 @@ Route::delete('/articulos/{id}', [ArticuloController::class, 'destroy'])->name('
 
 
 Route::resource('movimientos', MovimientoController::class);
+Route::get('/stock/export', [App\Http\Controllers\StockController::class, 'exportStock'])->name('stock.export');

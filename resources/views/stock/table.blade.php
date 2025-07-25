@@ -6,7 +6,7 @@
                     <th>ID</th>
                     <th>Descripción</th>
                     <th>Cantidad</th>
-                    <th>Activo</th>
+                    {{-- <th>Activo</th> --}}
                 </tr>
             </thead>
             <tbody>
@@ -15,13 +15,13 @@
                         <td>{{ $stock->id_art }}</td>
                         <td>{{ $stock->art_desc }}</td>
                         <td>{{ $stock->cantidad }}</td>
-                        <td>
+                        {{-- <td>
                             @if ($stock->activo)
                                 <span class="badge badge-success">Sí</span>
                             @else
                                 <span class="badge badge-danger">No</span>
                             @endif
-                        </td>
+                        </td> --}}
                     </tr>
                 @endforeach
             </tbody>

@@ -29,6 +29,9 @@
         <div class="card tabla-container">
            @include('stock.table')
         </div>
+        <a href="{{ route('stock.export') }}" class="btn btn-success mb-3">
+    <i class="fas fa-file-excel"></i> Exportar a Excel
+</a>
     </div>
 @endsection
 @section('js')

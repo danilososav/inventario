@@ -8,35 +8,43 @@ use Illuminate\Support\Facades\DB;
 use  App\Http\Controllers\Swal;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\StockExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class StockController extends Controller
 {
     public function index(Request $request)
-{
-    $buscar = $request->get('buscar');
+    {
+        $buscar = $request->get('buscar');
 
-    $stocks = DB::table('stock')
-        ->select('id_art', 'art_desc', 'cantidad', 'activo')
-        ->orderBy('id_stock', 'desc');
+        $stocks = DB::table('stock')
+            ->select('id_art', 'art_desc', 'cantidad', 'activo')
+            ->orderBy('id_stock', 'desc');
 
-    if (!empty($buscar)) {
-        $stocks = $stocks->where(function ($query) use ($buscar) {
-            $query->where('art_desc', 'iLIKE', "%{$buscar}%");
+        if (!empty($buscar)) {
+            $stocks = $stocks->where(function ($query) use ($buscar) {
+                $query->where('art_desc', 'iLIKE', "%{$buscar}%");
 
-            if (is_numeric($buscar)) {
-                $query->orWhere('id_art', intval($buscar));
-            }
-        });
+                if (is_numeric($buscar)) {
+                    $query->orWhere('id_art', intval($buscar));
+                }
+            });
+        }
+
+        $stocks = $stocks->paginate(10);
+
+        if ($request->ajax()) {
+            return view('stock.table')->with('stocks', $stocks);
+        }
+
+
+
+        return view('stock.index')->with('stocks', $stocks);
     }
 
-    $stocks = $stocks->paginate(10);
-
-    if ($request->ajax()) {
-        return view('stock.table')->with('stocks', $stocks);
+    public function exportStock()
+    {
+        return Excel::download(new StockExport, 'stock.xlsx');
     }
-
-    return view('stock.index')->with('stocks', $stocks);
-}
-
 }
