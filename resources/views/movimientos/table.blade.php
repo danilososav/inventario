@@ -1,28 +1,36 @@
 <div class="card-body p-0">
     <div class="table-responsive">
-        <table class="table" id="linea-table">
+        <table class="table" id="movimientos-table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Descripción</th>
-                    <th colspan="3">Operaciones</th>
+                    <th>Artículo</th>
+                    <th>Tipo</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                    <th>Observación</th>
+                    <th colspan="2">Operaciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($lineas as $linea)
+                @foreach ($movimientos as $mov)
                     <tr>
-                        <td>{{ $linea->id_linea }}</td>
-                        <td>{{ $linea->linea_desc }}</td>
+                        <td>{{ $mov->id_mov }}</td>
+                        <td>{{ $mov->art_desc }}</td>
+                        <td>{{ $mov->tipo_mov }}</td>
+                        <td>{{ $mov->cantidad }}</td>
+                        <td>{{ $mov->fecha_crea }}</td>
+                        <td>{{ $mov->observ }}</td>
                         <td style="width: 120px">
-                            {!! Form::open(['route' => ['lineas.destroy', $linea->id_linea], 'method' => 'delete']) !!}
+                            {!! Form::open(['route' => ['movimientos.destroy', $mov->id_mov], 'method' => 'delete']) !!}
                             <div class='btn-group'>
-                                <a href="{{ route('lineas.edit', [$linea->id_linea]) }}" class='btn btn-default btn-sm'>
+                                <a href="{{ route('movimientos.edit', [$mov->id_mov]) }}" class='btn btn-default btn-sm'>
                                     <i class="far fa-edit"></i>
                                 </a>
                                 {!! Form::button('<i class="far fa-trash-alt"></i>', [
                                     'type' => 'submit',
                                     'class' => 'btn btn-danger btn-sm alert-delete',
-                                    'data-mensaje' => $linea->linea_desc
+                                    'data-mensaje' => $mov->art_desc
                                 ]) !!}
                             </div>
                             {!! Form::close() !!}
@@ -34,9 +42,7 @@
     </div>
 
     <div class="card-footer clearfix">
-        <div class="float-right">
-            {{ $lineas->links() }}
-        </div>
+        {{ $movimientos->links() }}
     </div>
 </div>
 

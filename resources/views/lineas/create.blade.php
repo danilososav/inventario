@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Crear una Marca
+                        Crear Movimiento
                     </h1>
                 </div>
             </div>
@@ -16,25 +16,26 @@
     <div class="content px-3">
 
         <div class="card">
-            {!! Form::open(['route' => 'lineas.store']) !!}
+            {!! Form::open(['route' => 'movimientos.store']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('lineas.fields')
+                    @include('movimientos.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('lineas.index') }}" class="btn btn-default"> Cancelar </a>
+                <a href="{{ route('movimientos.index') }}" class="btn btn-default">Cancelar</a>
             </div>
 
             {!! Form::close() !!}
-
         </div>
     </div>
 @endsection
+
+
 @section('js')
     @include('layouts.partials.alerts')
 @endsection
+

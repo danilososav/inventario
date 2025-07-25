@@ -1,35 +1,35 @@
 <div class="card-body p-0">
     <div class="table-responsive">
-        <table class="table" id="producto-table">
+        <table class="table" id="marca-table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th>Descripción</th>
                     <th colspan="3">Operaciones</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($producto as $value)
+                @foreach ($marca as $value)
                     <tr>
-                        <td>{{ $value->id_prod }}</td>
-                        <td>{{ $value->descripcion }}</td>
+                        <td>{{ $value->id_marca}}</td>
+                        <td>{{ $value->mar_desc }}</td>
                         <td style="width: 120px">
-                            {{-- {!! Form::open(['route' =>
-                            ['productos.destroy', $value->id_prod],
+                            {!! Form::open(['route' =>
+                            ['marcas.destroy', $value->id_marca],
                             'method' => 'delete']) !!}
                             <div class='btn-group'>
-                                     <a href="{{ route('productos.edit', [$value->id_prod]) }}"
+                                     <a href="{{ route('marcas.edit', [$value->id_marca]) }}"
                                         class='btn btn-default btn-sm'>
                                         <i class="far fa-edit"></i>
                                     </a>
                                     {!! Form::button('<i class="far fa-trash-alt"></i>', [
                                         'type' => 'submit',
                                         'class' => 'btn btn-danger btn-sm alert-delete',
-                                        'data-mensaje' => $value->descripcion
+                                        'data-mensaje' => $value->mar_desc
                                     ]) !!}
 
                             </div>
-                            {!! Form::close() !!} --}}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
@@ -39,7 +39,10 @@
 
     <div class="card-footer clearfix">
        {{--  <div class="float-right">
-         @include('adminlte-templates::common.paginate', ['records' => $producto])
+         @include('adminlte-templates::common.paginate', ['records' => $marca])
         </div> --}}
     </div>
 </div>
+@section('js')
+    @include('layouts.partials.alerts')
+@endsection

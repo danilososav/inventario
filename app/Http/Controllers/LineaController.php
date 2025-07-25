@@ -90,20 +90,25 @@ class LineaController extends Controller
     }
 
 
-    public function destroy($id)
+   public function destroy($id)
 {
-    $lineas = DB::table('lineas')->where('id_linea', $id)
-        ->where('activo', true)->first();
+    $articulo = DB::table('articulos')
+        ->where('id_art', $id)
+        ->where('art_activo', true)
+        ->first();
 
+    if (empty($articulo)) {
+        return redirect()->route('articulos.index')
+            ->with('warning', 'El artículo no existe o ya está inactivo');
+    }
 
-        if (empty($lineas)) {
-            return redirect()->route('lineas.index')
-            ->with('success', 'La linea no existe');
-        }
+    DB::table('articulos')
+        ->where('id_art', $id)
+        ->update(['art_activo' => false]);
 
-    DB::table('lineas')->where('id_linea', $id)->update(['activo' => false]);
-
-    return redirect()->route('lineas.index')->with('success', 'Se actualizó correctamente el estado de la línea');
+    return redirect()->route('articulos.index')
+        ->with('success', 'Se desactivó correctamente el artículo');
 }
+
 
 }

@@ -5,10 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Stock</h1>
+                    <h1>Marcas</h1>
                 </div>
                     <div class="col-sm-6">
-
+                        <a class="btn btn-primary float-right" href="{{ route('marcas.create') }}">
+                            <i class="fa fa-plus"></i> Añadir
+                        </a>
                     </div>
 
             </div>
@@ -17,20 +19,19 @@
 
     <div class="content px-3">
 
-       {{--  @include('sweetalert::alert') --}}
-
         <div class="clearfix">
             <div class="col-sm-8">
-                @includeIf('layouts.buscador', ['url' => url()->current()])
+                 @includeIf('layouts.buscador', ['url' => url()->current()]) 
             </div>
 
         </div>
 
         <div class="card tabla-container">
-           @include('stock.table')
+            @include('marcas.table')
         </div>
     </div>
 @endsection
+
 @section('js')
     @include('layouts.partials.alerts')
 @endsection

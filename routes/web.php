@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\LineaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProfileController;
@@ -39,9 +40,6 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\MovimientoController;
 use App\Models\Marca;
 
-Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
-Route::resource('productos', ProductoController::class);
-
 Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
 
 Route::get('/movimiento', [MovimientoController::class, 'index'])->name('movimientos.index');
@@ -54,5 +52,11 @@ Route::resource('lineas', LineaController::class);
 Route::get('/lineas', [LineaController::class, 'index'])->name('lineas.index');
 Route::delete('/lineas/{id}', [LineaController::class, 'destroy'])->name('lineas.destroy');
 
+Route::resource('articulos', ArticuloController::class);
+Route::get('/articulos', [ArticuloController::class, 'index'])->name('articulos.index');
+Route::delete('/articulos/{id}', [ArticuloController::class, 'destroy'])->name('articulos.destroy');
 
 
+
+
+Route::resource('movimientos', MovimientoController::class);

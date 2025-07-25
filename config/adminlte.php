@@ -321,6 +321,12 @@ return [
             'can' => 'manage-blog',
         ],*/
         [
+            'text' => 'Articulos',
+            'route' => 'articulos.index',
+            'icon' => 'far fa-fw fa-shapes',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Lineas',
             'route' => 'lineas.index',
             'icon' => 'far fa-fw fa-shapes',
@@ -329,12 +335,6 @@ return [
         [
             'text' => 'Marcas',
             'route' => 'marcas.index',
-            'icon' => 'far fa-fw fa-shapes',
-            'label_color' => 'success',
-        ],
-        [
-            'text' => 'Productos',
-            'route' => 'productos.index',
             'icon' => 'far fa-fw fa-shapes',
             'label_color' => 'success',
         ],

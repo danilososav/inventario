@@ -5,34 +5,32 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>
-                        Crear un nuevo Producto
-                    </h1>
+                    <h1>Editar Artículo</h1>
                 </div>
             </div>
         </div>
     </section>
 
     <div class="content px-3">
-
         <div class="card">
-            {{-- @include('sweetalert::alert') --}}
-            {!! Form::open(['route' => 'productos.store']) !!}
+            {!! Form::model($articulo, ['route' => ['articulos.update', $articulo->id_art], 'method' => 'patch']) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('productos.fields')
+                    @include('articulos.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('productos.index') }}" class="btn btn-default"> Cancelar </a>
+                {!! Form::submit('Grabar', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('articulos.index') }}" class="btn btn-default">Cancelar</a>
             </div>
 
             {!! Form::close() !!}
-
         </div>
     </div>
+@endsection
+
+@section('js')
+    @include('layouts.partials.alerts')
 @endsection
